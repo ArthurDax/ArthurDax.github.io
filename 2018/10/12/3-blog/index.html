@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>机器学习系列（1） | Liu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。 今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：  这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，">
+  <meta name="description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。">
 <meta name="keywords" content="机器学习 python,学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习系列（1）">
 <meta property="og:url" content="http://yoursite.com/2018/10/12/3-blog/index.html">
 <meta property="og:site_name" content="Liu&#39;s blog">
-<meta property="og:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。 今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：  这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，">
+<meta property="og:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/assets/img/Sigmoid.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/训练样本.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W分类.png">
-<meta property="og:updated_time" content="2018-10-12T12:45:54.837Z">
+<meta property="og:updated_time" content="2018-10-12T12:48:21.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习系列（1）">
-<meta name="twitter:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。 今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：  这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，">
+<meta name="twitter:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。">
 <meta name="twitter:image" content="http://yoursite.com/assets/img/Sigmoid.png">
   
     <link rel="alternative" href="/atom.xml" title="Liu&#39;s blog" type="application/atom+xml">
@@ -166,7 +166,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h1><p>我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。</p>
+        <h1 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h1><p>我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。<a id="more"></a></p>
 <p>今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：</p>
 <p><img src="/assets/img/Sigmoid.png" alt="Sigmoid"></p>
 <p>这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，和小于0.5。</p>
