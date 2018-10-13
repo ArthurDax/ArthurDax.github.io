@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/assets/img/训练样本.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W分类.png">
-<meta property="og:updated_time" content="2018-10-12T12:48:21.642Z">
+<meta property="og:updated_time" content="2018-10-13T11:27:33.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习系列（1）">
 <meta name="twitter:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。">
@@ -170,8 +170,8 @@
 <p>今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：</p>
 <p><img src="/assets/img/Sigmoid.png" alt="Sigmoid"></p>
 <p>这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，和小于0.5。</p>
-<p>对于z，我们定义z = W0 <em> X0 + W1 </em> X1 + W2 <em> X2 +…+ Wn </em> Xn。其中Xn为我们的样本值，Wn为“回归系数”。当我们有确定的一组Wn时，我们可以用Sigmoid函数判定任意的一组Xn，将其分类。当Wn不确定的时候，我们需要用训练样本得到一组特定的Wn。</p>
-<p>为了得到最佳的Wn，我们采用梯度上升法：W = W + α*grad f(W)</p>
+<p>对于z，我们定义<strong>z = W0 <em> X0 + W1 </em> X1 + W2 <em> X2 +…+ Wn </em> Xn</strong>。其中Xn为我们的样本值，Wn为“回归系数”。当我们有确定的一组Wn时，我们可以用Sigmoid函数判定任意的一组Xn，将其分类。当Wn不确定的时候，我们需要用训练样本得到一组特定的Wn。</p>
+<p>为了得到最佳的Wn，我们采用梯度上升法：<strong>W = W + α*grad f(W)</strong></p>
 <p>这里用例子演示：</p>
 <p>样本：</p>
 <blockquote>
@@ -185,7 +185,10 @@
 <p>这一个函数把我们的训练样本转换成矩阵，并且填加了一个样本值X0=1.0。 下图以X1为横坐标，X2为纵坐标描点，并且样本分类为1时颜色为红色，分类为0时为绿色。</p>
 <p><img src="/assets/img/训练样本.png" alt="训练样本"></p>
 <blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">gradAscent</span><span class="params">(dataMatIn, classLabels)</span>:</span></span><br><span class="line">&gt;    <span class="comment"># 转换为Numpy矩阵数据</span></span><br><span class="line">&gt;    dataMatrix = mat(dataMatIn)</span><br><span class="line">&gt;    labelMat = mat(classLabels).transpose()</span><br><span class="line">&gt;</span><br><span class="line">&gt;    m,n = shape(dataMatrix)</span><br><span class="line">&gt;    alpha = <span class="number">0.001</span></span><br><span class="line">&gt;    maxCycles = <span class="number">2000</span></span><br><span class="line">&gt;    weights = ones((n,<span class="number">1</span>))</span><br><span class="line">&gt;    <span class="keyword">for</span> k <span class="keyword">in</span> range(maxCycles):</span><br><span class="line">&gt;        <span class="comment">#矩阵相乘</span></span><br><span class="line">&gt;        h = sigmoid(dataMatrix * weights) </span><br><span class="line">&gt;        error = (labelMat - h)</span><br><span class="line">&gt;        weights = weights + alpha * dataMatrix.transpose() * error</span><br><span class="line">&gt;		<span class="comment">#梯度上升法，负反馈</span></span><br><span class="line">&gt;    <span class="keyword">return</span> weights</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>def gradAscent(dataMatIn, classLabels):</p>
+<p>转换为Numpy矩阵数据</p>
+<p>dataMatrix = mat(dataMatIn)<br>labelMat = mat(classLabels).transpose()</p>
+<p>m,n = shape(dataMatrix)<br>alpha = 0.001<br>maxCycles = 2000<br>weights = ones((n,1))<br>for k in range(maxCycles):<br>​    #矩阵相乘<br>​    h = sigmoid(dataMatrix <em> weights)<br>​    error = (labelMat - h)<br>​    weights = weights + alpha </em> dataMatrix.transpose() * error<br>​    #梯度上升法，负反馈<br>return weights</p>
 </blockquote>
 <p>这个函数中，通过循环，梯度上升法和负反馈，将X0，X1，X2样本对应的W0，W1，W2最佳的值找到。</p>
 <p><img src="/assets/img/W.png" alt="W变化过程"></p>
@@ -434,10 +437,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">无</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mess</a>
               </li>
              
@@ -447,6 +446,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">无</a>
               </li>
             
             <div class="clearfix"></div>
