@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/assets/img/训练样本.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W.png">
 <meta property="og:image" content="http://yoursite.com/assets/img/W分类.png">
-<meta property="og:updated_time" content="2018-10-13T11:27:33.999Z">
+<meta property="og:updated_time" content="2018-10-13T11:34:07.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习系列（1）">
 <meta name="twitter:description" content="Logistic回归我们输入一些数据，机器将自动把数据分类。这个就是机器学习中的分类器。分类器的种类很多，包括：K-近邻算法，决策树，朴素贝叶斯，Logistic回归，支持向量机等。">
@@ -170,29 +170,28 @@
 <p>今天介绍一下Logistic回归和Sigmoid函数的分类器。先让我们看看Sigmoid函数——S（z）=1/（1+e^(-z)）,其图像为：</p>
 <p><img src="/assets/img/Sigmoid.png" alt="Sigmoid"></p>
 <p>这样当我们输入一个值z，以0.5为界，将输出的值分为两类：大于0.5，和小于0.5。</p>
-<p>对于z，我们定义<strong>z = W0 <em> X0 + W1 </em> X1 + W2 <em> X2 +…+ Wn </em> Xn</strong>。其中Xn为我们的样本值，Wn为“回归系数”。当我们有确定的一组Wn时，我们可以用Sigmoid函数判定任意的一组Xn，将其分类。当Wn不确定的时候，我们需要用训练样本得到一组特定的Wn。</p>
+<p>对于z，我们定义<strong>z = W0 <code>*</code> X0 + W1 <code>*</code> X1 + W2 <code>*</code> X2 +…+ Wn <code>*</code> Xn</strong>。其中Xn为我们的样本值，Wn为“回归系数”。当我们有确定的一组Wn时，我们可以用Sigmoid函数判定任意的一组Xn，将其分类。当Wn不确定的时候，我们需要用训练样本得到一组特定的Wn。</p>
 <p>为了得到最佳的Wn，我们采用梯度上升法：<strong>W = W + α*grad f(W)</strong></p>
 <p>这里用例子演示：</p>
 <p>样本：</p>
 <blockquote>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="number">-0.017612</span>   <span class="number">14.053064</span>  <span class="number">0</span></span><br><span class="line">&gt;<span class="number">-1.395634</span>  <span class="number">4.662541</span>   <span class="number">1</span></span><br><span class="line">&gt;<span class="number">-0.752157</span>  <span class="number">6.538620</span>   <span class="number">0</span></span><br><span class="line">&gt;<span class="number">-1.322371</span>  <span class="number">7.152853</span>   <span class="number">0</span></span><br><span class="line">&gt;<span class="number">0.423363</span>   <span class="number">11.054677</span>  <span class="number">0</span></span><br><span class="line">&gt;<span class="number">0.406704</span>   <span class="number">7.067335</span>   <span class="number">1</span></span><br><span class="line">&gt;<span class="number">0.667394</span>   <span class="number">12.741452</span>  <span class="number">0</span></span><br><span class="line">&gt;<span class="number">-2.460150</span>  <span class="number">6.866805</span>   <span class="number">1</span></span><br><span class="line">&gt;<span class="number">0.569411</span>   <span class="number">9.548755</span>   <span class="number">0</span></span><br><span class="line">&gt;<span class="number">-0.026632</span>  <span class="number">10.427743</span>  <span class="number">0</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>-0.017612   14.053064  0<br>-1.395634  4.662541   1<br>-0.752157  6.538620   0<br>-1.322371  7.152853   0<br>0.423363   11.054677  0<br>0.406704   7.067335   1<br>0.667394   12.741452  0<br>-2.460150  6.866805   1<br>0.569411   9.548755   0<br>-0.026632  10.427743  0</p>
 </blockquote>
 <p>第一列和第二列为特征值，即X1，X2。因为这是训练样本，所以第三列为已知的分类 1或0。</p>
 <p>代码：</p>
 <blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">def loadDataSet():</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">    dataMat = []; labelMat = []</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">    fr = open(<span class="string">'testSet.txt'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">        lineArr = line.strip().split()</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">        dataMat.append([1.0,<span class="built_in">float</span>(lineArr[0]),</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">        <span class="built_in">float</span>(lineArr[1])])</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">        labelMat.append(int(lineArr[2]))</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">    <span class="built_in">return</span> dataMat,labelMat</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></span><br><span class="line">&gt;    dataMat = []; labelMat = []</span><br><span class="line">&gt;    fr = open(<span class="string">'testSet.txt'</span>)</span><br><span class="line">&gt;    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">&gt;        lineArr = line.strip().split()</span><br><span class="line">&gt;        dataMat.append([<span class="number">1.0</span>,float(lineArr[<span class="number">0</span>]),</span><br><span class="line">&gt;        float(lineArr[<span class="number">1</span>])])</span><br><span class="line">&gt;        labelMat.append(int(lineArr[<span class="number">2</span>]))</span><br><span class="line">&gt;    <span class="keyword">return</span> dataMat,labelMat</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>这一个函数把我们的训练样本转换成矩阵，并且填加了一个样本值X0=1.0。 下图以X1为横坐标，X2为纵坐标描点，并且样本分类为1时颜色为红色，分类为0时为绿色。</p>
 <p><img src="/assets/img/训练样本.png" alt="训练样本"></p>
 <blockquote>
-<p>def gradAscent(dataMatIn, classLabels):</p>
-<p>转换为Numpy矩阵数据</p>
-<p>dataMatrix = mat(dataMatIn)<br>labelMat = mat(classLabels).transpose()</p>
-<p>m,n = shape(dataMatrix)<br>alpha = 0.001<br>maxCycles = 2000<br>weights = ones((n,1))<br>for k in range(maxCycles):<br>​    #矩阵相乘<br>​    h = sigmoid(dataMatrix <em> weights)<br>​    error = (labelMat - h)<br>​    weights = weights + alpha </em> dataMatrix.transpose() * error<br>​    #梯度上升法，负反馈<br>return weights</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">gradAscent</span><span class="params">(dataMatIn, classLabels)</span>:</span></span><br><span class="line">&gt;</span><br><span class="line">&gt;转换为Numpy矩阵数据</span><br><span class="line">&gt;</span><br><span class="line">&gt;dataMatrix = mat(dataMatIn)</span><br><span class="line">&gt;labelMat = mat(classLabels).transpose()</span><br><span class="line">&gt;</span><br><span class="line">&gt;m,n = shape(dataMatrix)</span><br><span class="line">&gt;alpha = <span class="number">0.001</span></span><br><span class="line">&gt;maxCycles = <span class="number">2000</span></span><br><span class="line">&gt;weights = ones((n,<span class="number">1</span>))</span><br><span class="line">&gt;<span class="keyword">for</span> k <span class="keyword">in</span> range(maxCycles):</span><br><span class="line">&gt;	<span class="comment">#矩阵相乘</span></span><br><span class="line">&gt;	h = sigmoid(dataMatrix * weights) </span><br><span class="line">&gt;	error = (labelMat - h)</span><br><span class="line">&gt;	weights = weights + alpha * dataMatrix.transpose() * error</span><br><span class="line">&gt;	<span class="comment">#梯度上升法，负反馈</span></span><br><span class="line">&gt;<span class="keyword">return</span> weights</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
 </blockquote>
 <p>这个函数中，通过循环，梯度上升法和负反馈，将X0，X1，X2样本对应的W0，W1，W2最佳的值找到。</p>
 <p><img src="/assets/img/W.png" alt="W变化过程"></p>
-<p>此图描绘了循环过程中Wo,W1,W2的变化过程。最终我们确定了一组合适的Wn。此时由z = W0 <em> X0 + W1 </em> X1 + W2 <em> X2 + W3 </em> X3 +…+ Wn * Xn 得到 X2和X1的关系，我们绘图:</p>
+<p>此图描绘了循环过程中Wo,W1,W2的变化过程。最终我们确定了一组合适的Wn。此时由<strong>z = W0 <code>*</code> X0 + W1 <code>*</code> X1 + W2 <code>*</code> X2 +…+ Wn <code>*</code> Xn</strong> 得到 X2和X1的关系，我们绘图:</p>
 <p><img src="/assets/img/W分类.png" alt="分类线"></p>
 <p>可以看到，数据大致被我们分成了两组。此时我们完成了训练算法的过程。</p>
 <p>之后，对于同类样本的数据，分类器将自动判断该组为1还是0。</p>
@@ -441,15 +440,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">无</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">机器学习 python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">无</a>
               </li>
             
             <div class="clearfix"></div>
