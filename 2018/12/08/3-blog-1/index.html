@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/9 | Liu&#39;s blog</title>
+  <title>记一次比赛 | Liu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="洪流中的一朵小浪花">
-<meta name="keywords" content="编程，书，生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liu&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/09/index.html">
+  <meta name="description" content="最近算忙的，社团的招新，培训，比赛。成都的气温骤降，真正的冬天到来啦。现在一个人坐在电脑前，总算有空闲的时间来更新博客。">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次比赛">
+<meta property="og:url" content="http://yoursite.com/2018/12/08/3-blog-1/index.html">
 <meta property="og:site_name" content="Liu&#39;s blog">
-<meta property="og:description" content="洪流中的一朵小浪花">
+<meta property="og:description" content="最近算忙的，社团的招新，培训，比赛。成都的气温骤降，真正的冬天到来啦。现在一个人坐在电脑前，总算有空闲的时间来更新博客。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/assets/img/check.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/data1.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/tag.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/list.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/data2.png">
+<meta property="og:updated_time" content="2018-12-08T11:27:21.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liu&#39;s blog">
-<meta name="twitter:description" content="洪流中的一朵小浪花">
+<meta name="twitter:title" content="记一次比赛">
+<meta name="twitter:description" content="最近算忙的，社团的招新，培训，比赛。成都的气温骤降，真正的冬天到来啦。现在一个人坐在电脑前，总算有空闲的时间来更新博客。">
+<meta name="twitter:image" content="http://yoursite.com/assets/img/check.png">
   
     <link rel="alternative" href="/atom.xml" title="Liu&#39;s blog" type="application/atom+xml">
   
@@ -140,60 +147,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-3-blog-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/30/1-blog/" class="archive-article-date">
-  	<time datetime="2018-09-30T10:15:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/1-blog/">First of all</a>
+    <h1 class="article-title" itemprop="name">
+      记一次比赛
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/12/08/3-blog-1/" class="archive-article-date">
+  	<time datetime="2018-12-08T10:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近算忙的，社团的招新，培训，比赛。成都的气温骤降，真正的冬天到来啦。现在一个人坐在电脑前，总算有空闲的时间来更新博客。<a id="more"></a></p>
+<p>记录一下之前的比赛，也算忙了一阵子。题目是设计一个核素查询软件，能够及时反馈相应的核素信息。我和队友的分工是他设计界面，我来收集数据，因为之前接触过一点爬虫。</p>
+<p>先是找到合适的数据源，翻了好久维基百科，最后找到了两个网站。<a href="https://www.lenntech.com/periodic/periodic-chart.htm" target="_blank" rel="noopener">https://www.lenntech.com/periodic/periodic-chart.htm</a> 一个做水处理的公司。 以及国际核数据中心:<a href="https://www.nndc.bnl.gov/nudat2/" target="_blank" rel="noopener">https://www.nndc.bnl.gov/nudat2/</a>  这个图是重点目标。就谈谈后面这个网站的爬取。</p>
+<p>1.先找到需要的数据</p>
+<p>浏览网站，找到看到了核素的电子层，半衰期等。然后用Google打开检查。<img src="/assets/img/check.png" alt="check"></p>
+<p>我们可以看到我们所需的数据：</p>
+<p><img src="/assets/img/data1.png" alt="data"></p>
+<p>然后我们找到它的标签位置：</p>
+<p><img src="/assets/img/tag.png" alt="tag"></p>
+<p>找到位置我们就可以用爬虫爬取了啦。</p>
+<p>2.爬取</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">Gethtml</span><span class="params">(url)</span>:</span></span><br><span class="line">&gt;    <span class="comment">#print(html.status_code)                  返回请求是否成功</span></span><br><span class="line">&gt;    <span class="comment">#print(html.encoding)  ISO-8857-1         数据格式</span></span><br><span class="line">&gt;    <span class="comment">#改变header</span></span><br><span class="line">&gt;    headers = &#123;<span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)AppleWebKit 537.36(KHTML, like Gecko) Chrome"</span>,</span><br><span class="line">&gt;    <span class="string">"Accept"</span>: <span class="string">"text/html,application/xhtml+xml,application/xml;q = 0.9, image / webp, * / *;q = 0.8"</span>&#125;</span><br><span class="line">&gt;    <span class="keyword">try</span>:</span><br><span class="line">&gt;        html =requests.get(url,headers=headers)   <span class="comment">#获取HTML</span></span><br><span class="line">&gt;        html.encoding = html.apparent_encoding                                                             <span class="comment">#改变编码方式</span></span><br><span class="line">&gt;        bsObj = BeautifulSoup(html.text,<span class="string">'lxml'</span>)                                                           <span class="comment">#获取HTML的BeautifulSoup</span></span><br><span class="line">&gt;    <span class="keyword">except</span>:</span><br><span class="line">&gt;        print(<span class="string">"wrong 1"</span>)</span><br><span class="line">&gt;    <span class="keyword">try</span>:</span><br><span class="line">&gt;        <span class="keyword">return</span> bsObj</span><br><span class="line">&gt;</span><br><span class="line">&gt;    <span class="keyword">except</span> UnboundLocalError:</span><br><span class="line">&gt;        print(<span class="string">"wrong2 is "</span>)</span><br><span class="line">&gt;        print(url)</span><br><span class="line">&gt;        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>这一个函数可以返回网页的txt.之后我们可以用beautifulsoup查找到相应的数据。</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">GetOneInformation</span><span class="params">(bs0bj)</span>:</span></span><br><span class="line">&gt;    d=&#123;<span class="string">'m'</span>:<span class="keyword">None</span>,<span class="string">'z'</span>:<span class="keyword">None</span>,<span class="string">'name'</span>:<span class="keyword">None</span>,<span class="string">'E(level) (MeV)'</span>:<span class="keyword">None</span>,<span class="string">'Jπ'</span>:<span class="keyword">None</span>,<span class="string">'Δ(MeV)'</span>:<span class="keyword">None</span>,</span><br><span class="line">&gt;       <span class="string">'T1/2'</span>:<span class="keyword">None</span>,<span class="string">'Decay Modes'</span>:<span class="keyword">None</span>&#125;</span><br><span class="line">&gt;    <span class="keyword">try</span>:</span><br><span class="line">&gt;        a =bs0bj.findAll(<span class="string">'table'</span>,&#123;<span class="string">'bgcolor'</span>:<span class="string">'navy'</span>,<span class="string">'cellpadding'</span>:<span class="string">'4'</span>,<span class="string">'cellspacing'</span>:<span class="string">'1'</span>,<span class="string">'border'</span>:<span class="string">'0'</span>,<span class="string">'align'</span>:<span class="string">'center'</span>&#125;)[<span class="number">0</span>]\</span><br><span class="line">&gt;            .findAll(<span class="string">'tr'</span>)[<span class="number">1</span>].findAll(<span class="string">'td'</span>)</span><br><span class="line">&gt;&#123;<span class="string">'bgcolor'</span>:<span class="string">'navy'</span>,<span class="string">'cellpadding'</span>:<span class="string">'4'</span>,<span class="string">'cellspacing'</span>:<span class="string">'1'</span>,<span class="string">'border'</span>:<span class="string">'0'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'tr'</span>)[<span class="number">2</span>].findAll(<span class="string">'td'</span>)</span><br><span class="line">&gt;        m=bs0bj.findAll(<span class="string">'td'</span>,&#123;<span class="string">'bgcolor'</span>:<span class="string">'#ffffff'</span>,<span class="string">'valign'</span>:<span class="string">'top'</span>,<span class="string">'align'</span>:<span class="string">'center'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'tr'</span>)[<span class="number">1</span>].td.findAll(<span class="string">'table'</span>,\</span><br><span class="line">&gt;        &#123;<span class="string">'cellpadding'</span>:<span class="string">'0'</span>,<span class="string">'border'</span>:<span class="string">'0'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'td'</span>,&#123;<span class="string">'class'</span>:<span class="string">'chart'</span>,<span class="string">'align'</span>:<span class="string">'right'</span>&#125;)[<span class="number">0</span>].contents[<span class="number">0</span>]</span><br><span class="line">&gt;        z=bs0bj.findAll(<span class="string">'td'</span>,&#123;<span class="string">'bgcolor'</span>:<span class="string">'#ffffff'</span>,<span class="string">'valign'</span>:<span class="string">'top'</span>,<span class="string">'align'</span>:<span class="string">'center'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'tr'</span>)[<span class="number">1</span>].td.findAll(<span class="string">'table'</span>,\</span><br><span class="line">&gt;        &#123;<span class="string">'cellpadding'</span>:<span class="string">'0'</span>,<span class="string">'border'</span>:<span class="string">'0'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'td'</span>,&#123;<span class="string">'class'</span>:<span class="string">'chart'</span>,<span class="string">'align'</span>:<span class="string">'right'</span>&#125;)[<span class="number">0</span>].contents[<span class="number">2</span>]</span><br><span class="line">&gt;        name=bs0bj.findAll(<span class="string">'td'</span>,&#123;<span class="string">'bgcolor'</span>:<span class="string">'#ffffff'</span>,<span class="string">'valign'</span>:<span class="string">'top'</span>,<span class="string">'align'</span>:<span class="string">'center'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'tr'</span>)[<span class="number">1</span>].td.findAll(<span class="string">'table'</span>,\</span><br><span class="line">&gt;        &#123;<span class="string">'cellpadding'</span>:<span class="string">'0'</span>,<span class="string">'border'</span>:<span class="string">'0'</span>&#125;)[<span class="number">0</span>].findAll(<span class="string">'td'</span>,&#123;<span class="string">'class'</span>:<span class="string">'chart'</span>&#125;)[<span class="number">1</span>].string</span><br><span class="line">&gt;        d[<span class="string">'z'</span>] = str(z)</span><br><span class="line">&gt;        d[<span class="string">'m'</span>] = str(m)</span><br><span class="line">&gt;        d[<span class="string">'name'</span>] = name</span><br><span class="line">&gt;        d[<span class="string">'E(level) (MeV)'</span>] = get(a[<span class="number">0</span>].contents)</span><br><span class="line">&gt;        d[<span class="string">'Jπ'</span>] = get(a[<span class="number">1</span>].contents)</span><br><span class="line">&gt;        d[<span class="string">'Δ(MeV)'</span>] = get(a[<span class="number">2</span>].contents)</span><br><span class="line">&gt;        d[<span class="string">'T1/2'</span>] = get(a[<span class="number">3</span>].contents)</span><br><span class="line">&gt;        d[<span class="string">'Decay Modes'</span>] = get(a[<span class="number">4</span>].contents)</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br><span class="line">&gt;        time.sleep(<span class="number">1</span>)</span><br><span class="line">&gt;</span><br><span class="line">&gt;    <span class="keyword">except</span> IndexError:</span><br><span class="line">&gt;        print(<span class="string">'wrong4'</span>)</span><br><span class="line">&gt;        <span class="keyword">pass</span></span><br><span class="line">&gt;</span><br><span class="line">&gt;    <span class="keyword">except</span> AttributeError:</span><br><span class="line">&gt;        print(<span class="string">'wrong5'</span>)</span><br><span class="line">&gt;        <span class="keyword">pass</span></span><br><span class="line">&gt;    <span class="keyword">return</span> d</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>对数据用对应的Tag查找，这样我们就把每个网页的数据用字典存储下来。</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">writedata</span><span class="params">(data)</span>:</span></span><br><span class="line">&gt;    csvFile = open(<span class="string">"E:/data-qb-.csv"</span>, <span class="string">'a'</span>,newline=<span class="string">''</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">&gt;    <span class="keyword">try</span>:</span><br><span class="line">&gt;        writer = csv.writer(csvFile)</span><br><span class="line">&gt;</span><br><span class="line">&gt;        writer.writerow(data.values())</span><br><span class="line">&gt;    <span class="keyword">finally</span>:</span><br><span class="line">&gt;        csvFile.close()</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>3.动态爬取</p>
+<p><img src="/assets/img/list.png" alt="list"></p>
+<p>但是当我们切换到其他条目时，再用上面的程序爬取，就会发现返回的网页并没有我们想要的数据。这是因为其他条目只有我们点击时才会返回数据。但是程序并不会动态爬取，即只能爬取初始页面。这个时候用到了selenium。这个包用来自动化检测网站。可以模仿人的行为，如点击，提交表单（输入密码等）。这样它就可以帮我们点击网址，得到其他条目的数据。</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">GetdataQb</span><span class="params">(urls,name1,url)</span>:</span></span><br><span class="line">&gt;    <span class="keyword">try</span>:</span><br><span class="line">&gt;        chrome_options = Options()</span><br><span class="line">&gt;        chrome_options.add_argument(<span class="string">"--headless"</span>)</span><br><span class="line">&gt;        driver = webdriver.Chrome(</span><br><span class="line">&gt;            executable_path=<span class="string">'C:\Program Files (x86)\Google\Chrome\Application\chromedriver-windows'</span>,</span><br><span class="line">&gt;            options=chrome_options)</span><br><span class="line">&gt;        driver.get(url)</span><br><span class="line">&gt;    <span class="keyword">except</span>:</span><br><span class="line">&gt;        <span class="keyword">pass</span></span><br><span class="line">&gt;    <span class="keyword">for</span> link <span class="keyword">in</span> urls:</span><br><span class="line">&gt;        a1=link</span><br><span class="line">&gt;</span><br><span class="line">&gt;        <span class="keyword">try</span>:</span><br><span class="line">&gt;            d = &#123;<span class="string">'m'</span>: <span class="keyword">None</span>, <span class="string">'z'</span>: <span class="keyword">None</span>, <span class="string">'name'</span>: <span class="keyword">None</span>, name1: <span class="keyword">None</span>&#125;</span><br><span class="line">&gt;            link = driver.find_element_by_xpath(link)</span><br><span class="line">&gt;            link.click()</span><br><span class="line">&gt;            time.sleep(<span class="number">1</span>)</span><br><span class="line">&gt;            WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">&gt;                EC.presence_of_element_located((By.XPATH, <span class="string">"//table[@bgcolor='navy']"</span>)))</span><br><span class="line">&gt;            pageSource = driver.page_source</span><br><span class="line">&gt;            bsObj = BeautifulSoup(pageSource,<span class="string">'lxml'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>贴上部分数据。</p>
+<p>4.数据</p>
+<p><img src="/assets/img/data2.png" alt="data2"></p>
+<p>小结：</p>
+<p>爬虫技术主要是找到数据存放在网页的位置，即对应的标签。然后我们通过各种包的运用，把数据反馈回来。简单的为静态爬取，进阶的为动态爬取，例如点击加载内容，时间等待，提交密码验证码等。</p>
+<p>这次记录的比较粗略，欢迎来邮交流。 XD </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/2.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mess</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/08/3-blog-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/10/12/3-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习系列（1）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -216,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
